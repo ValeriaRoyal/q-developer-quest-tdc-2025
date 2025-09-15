@@ -16,7 +16,7 @@
 ### 1. Trocar Credenciais do Banco
 ```bash
 # 1. Acessar dashboard do Neon
-# 2. Resetar senha do usuário neondb_owner
+# 2. Resetar senha do usuário [usuário do banco]
 # 3. Gerar nova connection string
 # 4. Atualizar .env.local
 ```
