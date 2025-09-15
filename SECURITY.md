@@ -4,7 +4,7 @@
 
 ### ❌ Credenciais Expostas no Git
 **Commit:** `6e8c2e2` - `test-connection.js`
-**Credencial:** `postgresql://neondb_owner:npg_2VQL9XIUTerS@...`
+**Credencial:** `postgresql://[REMOVIDO POR SEGURANÇA]
 
 ### 🔧 Correções Aplicadas
 - ✅ Arquivo `test-connection.js` corrigido
