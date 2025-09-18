@@ -51,6 +51,63 @@ Catálogo digital completo para colecionadores de Hot Wheels, desenvolvido intei
 - **Deploy:** Vercel
 - **AI:** Amazon Q Developer (94% do código)
 
+## 💰 Opções de Deploy
+
+### 🆓 **Gratuitas (R$ 0,00/mês)**
+
+| Plataforma | Frontend | Database | Storage | Bandwidth | Limitações |
+|------------|----------|----------|---------|-----------|------------|
+| **Vercel + Neon** ⭐ | Gratuito | 500MB PostgreSQL | 1GB | 100GB/mês | 6.000 builds/mês |
+| **Railway** | Gratuito | PostgreSQL ilimitado | Ilimitado | Ilimitado | $5 crédito/mês |
+| **Render** | 750h/mês | 1GB PostgreSQL | - | 100GB/mês | Sleep após inatividade |
+| **Supabase + Vercel** | Gratuito | 500MB PostgreSQL | 1GB | 50GB/mês | 50k usuários auth |
+| **Docker Local** | Local | PostgreSQL local | Ilimitado | - | Apenas desenvolvimento |
+
+### 💳 **Pagas (Produção)**
+
+| Plataforma | Custo/Mês | Frontend | Database | Storage | Vantagens |
+|------------|-----------|----------|----------|---------|-----------|
+| **AWS (Terraform)** | ~R$ 78 | CloudFront | RDS t3.micro | S3 ilimitado | Escalabilidade total |
+| **Vercel Pro + Neon Pro** | ~R$ 105 | Vercel Pro | Neon Pro 10GB | Ilimitado | Performance premium |
+| **Railway Pro** | ~R$ 25 | Ilimitado | PostgreSQL Pro | Ilimitado | Sem limitações |
+| **Render Pro** | ~R$ 35 | Sem sleep | PostgreSQL Pro | Ilimitado | Uptime garantido |
+| **DigitalOcean** | ~R$ 30 | Droplet | PostgreSQL | 25GB SSD | VPS dedicado |
+
+### 🎯 **Recomendações por Uso**
+
+#### **Para TDC 2025 Demo:**
+✅ **Vercel + Neon** (atual) - Gratuito, rápido, confiável
+
+#### **Para Desenvolvimento:**
+✅ **Docker Local** - Controle total, offline
+
+#### **Para Produção Pequena:**
+✅ **Railway Pro** - Melhor custo-benefício (R$ 25/mês)
+
+#### **Para Produção Enterprise:**
+✅ **AWS com Terraform** - Escalabilidade e controle total
+
+### 🚀 **Deploy Rápido (5 minutos)**
+
+#### Gratuito - Railway:
+```bash
+1. Acesse railway.app
+2. "Deploy from GitHub"
+3. Selecione o repositório
+4. Adicione PostgreSQL plugin
+5. Deploy automático! 🎉
+```
+
+#### Pago - AWS:
+```bash
+cd infrastructure/terraform
+terraform init
+terraform apply
+# Custo: ~R$ 78/mês
+```
+
+Veja a [documentação completa de deploy](./infrastructure/free-tier/README.md) com todas as opções.
+
 ## 🏗️ Arquitetura
 
 ![Arquitetura do Sistema](./docs/architecture-diagram.png)
