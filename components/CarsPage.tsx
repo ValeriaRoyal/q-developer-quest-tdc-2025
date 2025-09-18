@@ -33,50 +33,72 @@ export function CarsPage() {
   const { data, isLoading, refetch, error } = useQuery({
     queryKey: ['cars', filters],
     queryFn: async () => {
+      console.log('🔍 Buscando carros com filtros:', filters)
       const params = new URLSearchParams()
       Object.entries(filters).forEach(([key, value]) => {
         if (value) params.append(key, value.toString())
       })
       
+      console.log('📡 GET /api/cars?' + params.toString())
       const response = await fetch(`/api/cars?${params}`)
-      if (!response.ok) throw new Error('Failed to fetch cars')
-      return response.json()
+      console.log('📡 GET Response:', response.status, response.ok)
+      
+      if (!response.ok) {
+        console.error('❌ GET falhou:', response.status)
+        throw new Error('Failed to fetch cars')
+      }
+      
+      const data = await response.json()
+      console.log('📦 GET Data:', data)
+      return data
     },
     retry: 2,
     staleTime: 5 * 60 * 1000, // 5 minutes
   })
 
   const handleSave = async (carData: any) => {
+    console.log('🚀 handleSave iniciado:', carData)
     try {
       if (selectedCar?.id) {
         // Editar carro existente
+        console.log('📝 Editando carro existente:', selectedCar.id)
         const response = await fetch(`/api/cars/${selectedCar.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(carData)
         })
         
+        console.log('📡 PUT Response:', response.status, response.ok)
         if (response.ok) {
+          console.log('✅ PUT sucesso - chamando refetch()')
           refetch()
           setIsModalOpen(false)
           setSelectedCar(null)
         }
       } else {
         // Adicionar novo carro
+        console.log('➕ Criando novo carro')
         const response = await fetch('/api/cars', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(carData)
         })
         
+        console.log('📡 POST Response:', response.status, response.ok)
+        const responseData = await response.json()
+        console.log('📦 POST Data:', responseData)
+        
         if (response.ok) {
-          refetch() // Atualizar lista
+          console.log('✅ POST sucesso - chamando refetch()')
+          refetch()
           setIsModalOpen(false)
           setSelectedCar(null)
+        } else {
+          console.error('❌ POST falhou:', responseData)
         }
       }
     } catch (error) {
-      console.error('Erro ao salvar:', error)
+      console.error('💥 Erro ao salvar:', error)
     }
   }
 
