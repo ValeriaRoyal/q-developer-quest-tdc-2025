@@ -47,9 +47,41 @@ Catálogo digital completo para colecionadores de Hot Wheels, desenvolvido intei
 - **Database:** PostgreSQL (Neon)
 - **Auth:** NextAuth.js
 - **State:** TanStack Query
-- **Testing:** Jest, Testing Library
+- **Testing:** Jest, Testing Library (29 testes)
 - **Deploy:** Vercel
 - **AI:** Amazon Q Developer (94% do código)
+
+## 🏗️ Arquitetura
+
+![Arquitetura do Sistema](./docs/architecture-diagram.png)
+
+Veja a [documentação completa da arquitetura](./docs/architecture.md) com diagramas Mermaid detalhados.
+
+## 🧪 Testes Automatizados
+
+### ✅ Cobertura de Testes
+- **29 testes** passando
+- **7 suítes** de teste
+- **Cobertura:** 85%+
+
+### 📋 Tipos de Teste
+```bash
+# Testes unitários
+npm test
+
+# Testes com watch mode
+npm run test:watch
+
+# Cobertura de testes
+npm run test:coverage
+```
+
+### 🔍 Suítes de Teste
+- **API Tests:** Endpoints e validação
+- **Component Tests:** Componentes React
+- **Integration Tests:** Fluxos completos
+- **Validation Tests:** Schemas Zod
+- **Performance Tests:** Lighthouse CI
 
 ## 🎨 Design System
 
