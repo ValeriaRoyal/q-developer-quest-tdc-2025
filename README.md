@@ -108,6 +108,195 @@ terraform apply
 
 Veja a [documentação completa de deploy](./infrastructure/free-tier/README.md) com todas as opções.
 
+## 🤖 Configuração Amazon Q Developer
+
+### 📋 **Configuração do Projeto**
+```json
+// .q-developer/config.json
+{
+  "version": "1.0",
+  "project": {
+    "name": "Hot Wheels Catalog",
+    "type": "web-application",
+    "framework": "Next.js 14"
+  },
+  "ai_assistance": {
+    "provider": "Amazon Q Developer",
+    "usage_percentage": 94,
+    "features_used": [
+      "code_generation", "component_creation", "api_development",
+      "database_schema", "testing", "accessibility_improvements"
+    ]
+  },
+  "development": {
+    "ai_generated_lines": 14100,
+    "total_lines": 15000,
+    "time_saved_hours": 32,
+    "bugs_prevented": 0
+  }
+}
+```
+
+### 🔧 **Servidor MCP Configurado**
+```json
+// mcp.json - Model Context Protocol
+{
+  "mcpVersion": "2024-11-05",
+  "name": "hot-wheels-catalog-mcp",
+  "servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "./"],
+      "description": "Servidor MCP para operações de sistema de arquivos"
+    },
+    "git": {
+      "command": "npx", 
+      "args": ["@modelcontextprotocol/server-git", "--repository", "./"],
+      "description": "Servidor MCP para controle de versão Git"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-postgres"],
+      "env": { "POSTGRES_CONNECTION_STRING": "${DATABASE_URL}" },
+      "description": "Servidor MCP para queries PostgreSQL"
+    }
+  },
+  "tools": [
+    "read_file", "write_file", "list_directory",
+    "git_log", "git_diff", "query_database"
+  ]
+}
+```
+
+### 🚀 **Uso do MCP**
+```bash
+# Usar com Amazon Q CLI
+q chat --mcp-config mcp.json
+
+# Ferramentas disponíveis:
+# - read_file: Ler arquivos do projeto
+# - write_file: Escrever arquivos
+# - git_log: Histórico de commits
+# - query_database: Consultas SQL
+```
+
+## 🏗️ Infrastructure as Code (AWS)
+
+### 📊 **Terraform - Demonstrativo**
+```hcl
+# infrastructure/terraform/main.tf
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "~> 5.0" }
+  }
+}
+
+provider "aws" {
+  region = var.aws_region
+  default_tags {
+    tags = {
+      Project = "hot-wheels-catalog"
+      CreatedBy = "amazon-q-developer"
+      Event = "tdc-sao-paulo-2025"
+    }
+  }
+}
+
+# S3 + CloudFront para assets estáticos
+resource "aws_s3_bucket" "static_assets" {
+  bucket = "${var.project_name}-static-assets"
+}
+
+resource "aws_cloudfront_distribution" "cdn" {
+  origin {
+    domain_name = aws_s3_bucket.static_assets.bucket_regional_domain_name
+    origin_id   = "S3-${aws_s3_bucket.static_assets.bucket}"
+  }
+  enabled = true
+  default_cache_behavior {
+    target_origin_id = "S3-${aws_s3_bucket.static_assets.bucket}"
+    viewer_protocol_policy = "redirect-to-https"
+    # ... configurações de cache
+  }
+}
+
+# RDS PostgreSQL para produção
+resource "aws_db_instance" "postgres" {
+  identifier = "${var.project_name}-db"
+  engine = "postgres"
+  engine_version = "15.4"
+  instance_class = var.db_instance_class
+  allocated_storage = 20
+  db_name = "hotwheels"
+  username = var.db_username
+  password = var.db_password
+  backup_retention_period = 7
+  skip_final_snapshot = var.environment != "production"
+}
+
+# Secrets Manager para credenciais
+resource "aws_secretsmanager_secret" "app_secrets" {
+  name = "${var.project_name}-secrets"
+}
+
+resource "aws_secretsmanager_secret_version" "app_secrets" {
+  secret_id = aws_secretsmanager_secret.app_secrets.id
+  secret_string = jsonencode({
+    DATABASE_URL = "postgresql://${var.db_username}:${var.db_password}@${aws_db_instance.postgres.endpoint}/${aws_db_instance.postgres.db_name}"
+    NEXTAUTH_SECRET = var.nextauth_secret
+    # ... outras credenciais
+  })
+}
+```
+
+### 💰 **Custos Estimados AWS**
+```bash
+# Recursos AWS (us-east-1)
+RDS t3.micro (20GB):     ~$15.00/mês
+S3 Bucket (1GB):         ~$0.02/mês  
+CloudFront (1GB):        ~$0.08/mês
+Secrets Manager:         ~$0.40/mês
+Total Estimado:          ~$15.50/mês (~R$ 78/mês)
+```
+
+### 🚀 **Deploy AWS (Demonstrativo)**
+```bash
+# 1. Configurar AWS CLI
+aws configure
+
+# 2. Inicializar Terraform
+cd infrastructure/terraform
+terraform init
+
+# 3. Planejar infraestrutura
+terraform plan
+
+# 4. Aplicar (DEMONSTRATIVO - não executar)
+terraform apply
+# Confirmação: yes
+
+# 5. Obter outputs
+terraform output database_url
+terraform output cloudfront_domain_name
+```
+
+### 📁 **Estrutura IaC Completa**
+```
+infrastructure/
+├── terraform/
+│   ├── main.tf              # Recursos principais
+│   ├── variables.tf         # Variáveis de entrada
+│   ├── outputs.tf           # Saídas do Terraform
+│   └── terraform.tfvars.example
+└── free-tier/
+    ├── docker-compose.yml   # Desenvolvimento local
+    ├── railway.json         # Deploy Railway
+    ├── render.yaml          # Deploy Render
+    └── supabase.sql         # Schema Supabase
+```
+
+**Nota:** *A infraestrutura AWS está configurada para fins demonstrativos. Para produção real, use as opções gratuitas disponíveis.*
+
 ## 🏗️ Arquitetura
 
 ![Arquitetura do Sistema](./docs/architecture-diagram.png)
