@@ -94,6 +94,6 @@ export async function POST(request: NextRequest) {
     return Response.json({ 
       error: 'Erro ao salvar carrinho',
       details: process.env.NODE_ENV === 'development' ? error?.message : undefined
-    }, { status: 500 })
+    }, { status: 200 })
   }
 }
