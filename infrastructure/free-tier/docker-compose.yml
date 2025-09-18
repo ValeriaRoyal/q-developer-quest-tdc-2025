@@ -1,0 +1,40 @@
+# Hot Wheels Catalog - Free Deployment
+# Desenvolvido com Amazon Q Developer para TDC São Paulo 2025
+
+version: '3.8'
+
+services:
+  # PostgreSQL Database (Free)
+  postgres:
+    image: postgres:15-alpine
+    container_name: hotwheels-db
+    environment:
+      POSTGRES_DB: hotwheels
+      POSTGRES_USER: hotwheels_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-hotwheels_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hotwheels_user -d hotwheels"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis for Caching (Optional)
+  redis:
+    image: redis:7-alpine
+    container_name: hotwheels-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
