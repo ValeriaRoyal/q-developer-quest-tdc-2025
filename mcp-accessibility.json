@@ -1,0 +1,98 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "hot-wheels-accessibility-mcp",
+  "description": "MCP configuration for accessibility improvements in Hot Wheels Catalog",
+  "version": "1.0.0",
+  "servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/media/val/Novo volume/catalogo-hotwheels"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "accessibility": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-web-accessibility"],
+      "env": {
+        "BASE_URL": "https://q-developer-quest-tdc-2025-eytv.vercel.app"
+      },
+      "description": "Servidor MCP para análise de acessibilidade web"
+    },
+    "lighthouse": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-lighthouse"],
+      "env": {
+        "TARGET_URL": "https://q-developer-quest-tdc-2025-eytv.vercel.app"
+      },
+      "description": "Servidor MCP para auditoria Lighthouse"
+    }
+  },
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Read component files for accessibility analysis",
+      "server": "filesystem"
+    },
+    {
+      "name": "write_file",
+      "description": "Write improved accessible components",
+      "server": "filesystem"
+    },
+    {
+      "name": "accessibility_audit",
+      "description": "Run WCAG accessibility audit on pages",
+      "server": "accessibility"
+    },
+    {
+      "name": "check_aria_labels",
+      "description": "Validate ARIA labels and roles",
+      "server": "accessibility"
+    },
+    {
+      "name": "color_contrast_check",
+      "description": "Check color contrast ratios",
+      "server": "accessibility"
+    },
+    {
+      "name": "keyboard_navigation_test",
+      "description": "Test keyboard navigation flow",
+      "server": "accessibility"
+    },
+    {
+      "name": "screen_reader_test",
+      "description": "Test screen reader compatibility",
+      "server": "accessibility"
+    },
+    {
+      "name": "lighthouse_accessibility",
+      "description": "Run Lighthouse accessibility audit",
+      "server": "lighthouse"
+    }
+  ],
+  "accessibility_config": {
+    "wcag_level": "AAA",
+    "color_contrast_ratio": "7:1",
+    "focus_indicators": "required",
+    "aria_compliance": "strict",
+    "keyboard_navigation": "full",
+    "screen_reader_support": "nvda,jaws,voiceover"
+  },
+  "improvement_targets": [
+    {
+      "component": "CarModal",
+      "issues": ["missing aria-labels", "focus trap needed"],
+      "priority": "high"
+    },
+    {
+      "component": "CarsPage", 
+      "issues": ["heading hierarchy", "skip links"],
+      "priority": "medium"
+    },
+    {
+      "component": "Header",
+      "issues": ["navigation landmarks", "mobile menu accessibility"],
+      "priority": "high"
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "timestamp": "2025-09-18T17:39:39.137Z",
+  "totalIssues": 24,
+  "highPriority": 24,
+  "mediumPriority": 0,
+  "issues": [
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 1,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 2,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 3,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 4,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-input-label",
+      "element": "input",
+      "line": 1,
+      "severity": "high",
+      "message": "Input sem label acessível"
+    },
+    {
+      "type": "missing-input-label",
+      "element": "input",
+      "line": 2,
+      "severity": "high",
+      "message": "Input sem label acessível"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 1,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 2,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 3,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 4,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 5,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 6,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 9,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 10,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 11,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 12,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 13,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 1,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 2,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 3,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 4,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 2,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 3,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    },
+    {
+      "type": "missing-aria-label",
+      "element": "button",
+      "line": 4,
+      "severity": "high",
+      "message": "Button sem aria-label ou aria-labelledby"
+    }
+  ],
+  "improvements": [
+    {
+      "component": "CarsPage.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsPage.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsPage.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsPage.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsPage.tsx",
+      "fix": "Adicionar label ou aria-label ao input",
+      "code": "<input aria-label=\"Campo de busca\" />",
+      "priority": "high"
+    },
+    {
+      "component": "CarsPage.tsx",
+      "fix": "Adicionar label ou aria-label ao input",
+      "code": "<input aria-label=\"Campo de busca\" />",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "Header.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsList.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsList.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsList.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "CarsList.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "SearchBar.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "SearchBar.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    },
+    {
+      "component": "SearchBar.tsx",
+      "fix": "Adicionar aria-label=\"Executar ação\"",
+      "code": "<button aria-label=\"Executar ação\">",
+      "priority": "high"
+    }
+  ],
+  "wcagLevel": "AAA",
+  "componentsAudited": 5
+}
