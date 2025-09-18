@@ -1,0 +1,72 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "hot-wheels-eslint-mcp",
+  "description": "ESLint MCP Server configuration for Hot Wheels Catalog code quality",
+  "version": "1.0.0",
+  "servers": {
+    "eslint": {
+      "command": "npx",
+      "args": ["@eslint/mcp-server"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "description": "ESLint MCP Server for code linting and quality analysis"
+    }
+  },
+  "tools": [
+    {
+      "name": "lint_file",
+      "description": "Lint a specific JavaScript/TypeScript file",
+      "server": "eslint"
+    },
+    {
+      "name": "lint_project",
+      "description": "Lint entire project files",
+      "server": "eslint"
+    },
+    {
+      "name": "fix_file",
+      "description": "Auto-fix ESLint issues in a file",
+      "server": "eslint"
+    },
+    {
+      "name": "get_rules",
+      "description": "Get available ESLint rules",
+      "server": "eslint"
+    },
+    {
+      "name": "check_config",
+      "description": "Validate ESLint configuration",
+      "server": "eslint"
+    }
+  ],
+  "eslint_config": {
+    "extends": [
+      "next/core-web-vitals",
+      "@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "no-unused-vars": "error",
+      "no-console": "warn",
+      "prefer-const": "error",
+      "@typescript-eslint/no-explicit-any": "warn"
+    },
+    "files": [
+      "**/*.{js,jsx,ts,tsx}",
+      "!node_modules/**",
+      "!.next/**",
+      "!out/**"
+    ]
+  },
+  "integration": {
+    "project_root": "/media/val/Novo volume/catalogo-hotwheels",
+    "config_file": ".eslintrc.json",
+    "ignore_file": ".eslintignore"
+  },
+  "usage_examples": [
+    "Lint the file components/CarModal.tsx",
+    "Fix all ESLint issues in the project",
+    "Check what ESLint rules are available",
+    "Validate the current ESLint configuration"
+  ]
+}
