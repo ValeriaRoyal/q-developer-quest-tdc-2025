@@ -22,7 +22,7 @@ Catálogo digital completo para colecionadores de Hot Wheels, desenvolvido intei
 ## 📸 Screenshots & Demo
 
 ### 🖥️ Interface Principal
-![Hot Wheels Catalog - Dashboard](https://via.placeholder.com/800x450/FF7800/000000?text=Hot+Wheels+Catalog+Dashboard)
+![Hot Wheels Catalog - Dashboard](./docs/screenshots/dashboard.png)
 
 ### 📱 Responsivo & Acessível
 ![Hot Wheels Catalog - Mobile](https://via.placeholder.com/400x600/FF7800/000000?text=Mobile+View)
