@@ -61,6 +61,19 @@ export function CarsPage() {
           setIsModalOpen(false)
           setSelectedCar(null)
         }
+      } else {
+        // Adicionar novo carro
+        const response = await fetch('/api/cars', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(carData)
+        })
+        
+        if (response.ok) {
+          refetch() // Atualizar lista
+          setIsModalOpen(false)
+          setSelectedCar(null)
+        }
       }
     } catch (error) {
       console.error('Erro ao salvar:', error)
