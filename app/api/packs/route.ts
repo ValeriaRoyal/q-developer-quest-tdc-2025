@@ -8,6 +8,15 @@ import { eq, and, like, desc, count } from 'drizzle-orm'
 // GET /api/packs
 export async function GET(request: NextRequest) {
   try {
+    // Verificar se DATABASE_URL está configurada
+    if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes('placeholder')) {
+      return Response.json({ 
+        data: [],
+        pagination: { page: 1, limit: 20, total: 0, totalPages: 0 },
+        message: 'Database not configured'
+      }, { status: 200 })
+    }
+
     const session = await getServerSession(authOptions)
     const userId = session?.user?.id || 'dev-user'
 

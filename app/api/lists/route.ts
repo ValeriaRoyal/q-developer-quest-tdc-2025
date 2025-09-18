@@ -7,6 +7,14 @@ import { eq, desc } from 'drizzle-orm'
 
 export async function GET() {
   try {
+    // Verificar se DATABASE_URL está configurada
+    if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes('placeholder')) {
+      return Response.json({ 
+        data: [],
+        message: 'Database not configured'
+      }, { status: 200 })
+    }
+
     const session = await getServerSession(authOptions)
     const userId = session?.user?.id || 'dev-user'
 
