@@ -10,13 +10,12 @@ export async function GET() {
     // Verificar se DATABASE_URL está configurada
     if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes('placeholder')) {
       return Response.json({ 
-        error: 'Database not configured',
         data: [],
-        pagination: { page: 1, limit: 20, total: 0, totalPages: 0 }
+        pagination: { page: 1, limit: 20, total: 0, totalPages: 0 },
+        message: 'Database not configured - showing demo mode'
       }, { status: 200 })
     }
 
-    // Usar fallback para desenvolvimento se não houver sessão
     const session = await getServerSession(authOptions)
     const userId = session?.user?.id || 'dev-user'
     
@@ -46,18 +45,13 @@ export async function GET() {
   } catch (error: any) {
     console.error('GET /api/cars error:', error?.message || error)
     
-    // Se for erro de conexão com banco, retornar dados vazios
-    if (error?.message?.includes('connect') || error?.message?.includes('ENOTFOUND')) {
-      return Response.json({ 
-        error: 'Database connection failed',
-        data: [],
-        pagination: { page: 1, limit: 20, total: 0, totalPages: 0 }
-      }, { status: 200 })
-    }
-    
+    // Sempre retornar 200 com dados vazios em caso de erro
     return Response.json({ 
-      error: 'Erro ao buscar carros',
-      details: process.env.NODE_ENV === 'development' ? error?.message : undefined
+      data: [],
+      pagination: { page: 1, limit: 20, total: 0, totalPages: 0 },
+      message: 'Database connection failed - showing demo mode',
+      error: process.env.NODE_ENV === 'development' ? error?.message : 'Connection failed'
+    }, { status: 200 })
     }, { status: 500 })
   }
 }
