@@ -1,0 +1,82 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "hot-wheels-real-mcp",
+  "description": "Real AWS MCP implementation based on https://awslabs.github.io/mcp/",
+  "version": "1.0.0",
+  "servers": {
+    "aws-pricing": {
+      "command": "python",
+      "args": ["-m", "awslabs.aws_pricing_mcp_server"],
+      "env": {
+        "AWS_REGION": "us-east-1"
+      },
+      "description": "AWS Pricing MCP Server - Real implementation from awslabs/mcp"
+    },
+    "aws-api": {
+      "command": "python", 
+      "args": ["-m", "awslabs.aws_api_mcp_server"],
+      "env": {
+        "AWS_REGION": "us-east-1",
+        "AWS_PROFILE": "default"
+      },
+      "description": "AWS API MCP Server - Real implementation from awslabs/mcp"
+    }
+  },
+  "tools": [
+    {
+      "name": "get_pricing",
+      "description": "Get AWS service pricing information",
+      "server": "aws-pricing"
+    },
+    {
+      "name": "calculate_cost",
+      "description": "Calculate costs for AWS resources",
+      "server": "aws-pricing"
+    },
+    {
+      "name": "list_services",
+      "description": "List available AWS services",
+      "server": "aws-api"
+    },
+    {
+      "name": "describe_service",
+      "description": "Get detailed information about AWS service",
+      "server": "aws-api"
+    }
+  ],
+  "installation": {
+    "requirements": [
+      "python >= 3.8",
+      "uv package manager",
+      "AWS credentials configured"
+    ],
+    "steps": [
+      "git clone https://github.com/awslabs/mcp.git",
+      "cd mcp/src/aws-pricing-mcp-server",
+      "uv sync",
+      "Configure AWS credentials"
+    ]
+  },
+  "usage": {
+    "claude_desktop": {
+      "config_path": "~/Library/Application Support/Claude/claude_desktop_config.json",
+      "example": {
+        "mcpServers": {
+          "aws-pricing": {
+            "command": "uv",
+            "args": ["--directory", "/path/to/mcp/src/aws-pricing-mcp-server", "run", "aws-pricing-mcp-server"],
+            "env": {
+              "AWS_REGION": "us-east-1"
+            }
+          }
+        }
+      }
+    },
+    "amazon_q": {
+      "command": "q chat --mcp-config mcp-real.json"
+    }
+  },
+  "real_implementation": true,
+  "source": "https://awslabs.github.io/mcp/",
+  "documentation": "https://awslabs.github.io/mcp/servers/aws-pricing-mcp-server"
+}

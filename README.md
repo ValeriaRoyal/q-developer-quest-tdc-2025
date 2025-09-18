@@ -176,64 +176,57 @@ Veja a [documentação completa de acessibilidade](./docs/accessibility.md) com 
 }
 ```
 
-### 🔧 **Servidor MCP Configurado**
+### 🔧 **MCP Real AWS Implementado**
 ```json
-// mcp.json - Model Context Protocol
+// mcp-real.json - Implementação real baseada em https://awslabs.github.io/mcp/
 {
   "mcpVersion": "2024-11-05",
-  "name": "hot-wheels-catalog-mcp",
+  "name": "hot-wheels-real-mcp",
   "servers": {
-    "filesystem": {
-      "command": "npx",
-      "args": ["@modelcontextprotocol/server-filesystem", "./"],
-      "description": "Servidor MCP para operações de sistema de arquivos"
+    "aws-pricing": {
+      "command": "python",
+      "args": ["-m", "awslabs.aws_pricing_mcp_server"],
+      "env": { "AWS_REGION": "us-east-1" },
+      "description": "AWS Pricing MCP Server - Real implementation"
     },
-    "git": {
-      "command": "npx", 
-      "args": ["@modelcontextprotocol/server-git", "--repository", "./"],
-      "description": "Servidor MCP para controle de versão Git"
-    },
-    "postgres": {
-      "command": "npx",
-      "args": ["@modelcontextprotocol/server-postgres"],
-      "env": { "POSTGRES_CONNECTION_STRING": "${DATABASE_URL}" },
-      "description": "Servidor MCP para queries PostgreSQL"
-    },
-    "aws": {
-      "command": "npx",
-      "args": ["@modelcontextprotocol/server-aws"],
+    "aws-api": {
+      "command": "python", 
+      "args": ["-m", "awslabs.aws_api_mcp_server"],
       "env": { "AWS_REGION": "us-east-1", "AWS_PROFILE": "default" },
-      "description": "Servidor MCP oficial da AWS para consultas de preços e recursos"
+      "description": "AWS API MCP Server - Real implementation"
     }
   },
-  "tools": [
-    "read_file", "write_file", "list_directory",
-    "git_log", "git_diff", "query_database",
-    "aws_pricing", "aws_resources", "aws_cost_estimate"
-  ]
+  "tools": ["get_pricing", "calculate_cost", "list_services", "describe_service"],
+  "source": "https://awslabs.github.io/mcp/",
+  "real_implementation": true
 }
 ```
 
-### ♿ **MCP Acessibilidade Configurado**
+### 🚀 **Setup MCP Real**
+```bash
+# Instalação automática
+./scripts/setup-real-mcp.sh
+
+# Uso com Amazon Q
+q chat --mcp-config mcp-real.json
+
+# Comandos reais disponíveis:
+"Qual o preço do RDS db.t3.micro na us-east-1?"
+"Calcule custo mensal de 100GB S3 Standard"
+"Liste serviços AWS disponíveis"
+```
+
+### ♿ **MCP Acessibilidade (Demonstrativo)**
 ```json
-// mcp-accessibility.json - Configuração especializada para acessibilidade
+// mcp-accessibility.json - Configuração demonstrativa
 {
   "servers": {
     "accessibility": {
       "command": "npx",
       "args": ["@modelcontextprotocol/server-web-accessibility"],
-      "description": "Servidor MCP para análise de acessibilidade WCAG AAA"
-    },
-    "lighthouse": {
-      "command": "npx", 
-      "args": ["@modelcontextprotocol/server-lighthouse"],
-      "description": "Servidor MCP para auditoria Lighthouse"
+      "description": "Servidor demonstrativo para acessibilidade WCAG AAA"
     }
   },
-  "tools": [
-    "accessibility_audit", "check_aria_labels", "color_contrast_check",
-    "keyboard_navigation_test", "screen_reader_test", "lighthouse_accessibility"
-  ],
   "wcag_level": "AAA",
   "color_contrast_ratio": "7:1"
 }
@@ -241,24 +234,28 @@ Veja a [documentação completa de acessibilidade](./docs/accessibility.md) com 
 
 ### 🚀 **Uso do MCP**
 ```bash
-# MCP Principal - Desenvolvimento geral
-q chat --mcp-config mcp.json
+# MCP Real AWS - Implementação oficial
+q chat --mcp-config mcp-real.json
 
-# MCP Acessibilidade - Melhorias WCAG AAA
+# MCP Acessibilidade - Demonstrativo
 q chat --mcp-config mcp-accessibility.json
 
-# Ferramentas disponíveis:
-# - read_file: Ler arquivos do projeto
-# - write_file: Escrever arquivos
-# - git_log: Histórico de commits
-# - query_database: Consultas SQL
-# - aws_pricing: Consultar preços AWS
-# - aws_resources: Listar recursos AWS
-# - aws_cost_estimate: Estimar custos
+# Ferramentas MCP Real disponíveis:
+# - get_pricing: Preços reais AWS
+# - calculate_cost: Cálculos de custo
+# - list_services: Serviços AWS
+# - describe_service: Detalhes de serviços
+
+# Ferramentas demonstrativas:
 # - accessibility_audit: Auditoria WCAG
 # - color_contrast_check: Verificar contraste
 # - keyboard_navigation_test: Testar navegação
 ```
+
+### 📚 **Documentação MCP**
+- [Implementação Real AWS MCP](./docs/real-mcp-implementation.md) - Baseado em https://awslabs.github.io/mcp/
+- [Clarificação MCP](./docs/mcp-usage-clarification.md) - Real vs Demonstrativo
+- [Vibe Coding & MCP Guide](./docs/vibe-coding-mcp-guide.md) - Metodologia completa
 
 ### 🎵 **Vibe Coding Aplicado**
 Este projeto demonstra **Vibe Coding** - metodologia que combina fluxo criativo natural com colaboração IA-humano em tempo real:
