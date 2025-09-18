@@ -13,6 +13,11 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   swcMinify: true,
+  env: {
+    DATABASE_URL: process.env.DATABASE_URL || 'postgresql://placeholder:placeholder@localhost:5432/placeholder',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || 'fallback-secret-for-build-only-not-secure-minimum-32-chars'
+  },
 }
 
 module.exports = nextConfig
