@@ -52,7 +52,6 @@ export async function GET() {
       message: 'Database connection failed - showing demo mode',
       error: process.env.NODE_ENV === 'development' ? error?.message : 'Connection failed'
     }, { status: 200 })
-    }, { status: 500 })
   }
 }
 
