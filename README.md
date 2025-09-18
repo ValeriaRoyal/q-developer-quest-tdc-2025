@@ -159,11 +159,18 @@ Veja a [documentação completa de deploy](./infrastructure/free-tier/README.md)
       "args": ["@modelcontextprotocol/server-postgres"],
       "env": { "POSTGRES_CONNECTION_STRING": "${DATABASE_URL}" },
       "description": "Servidor MCP para queries PostgreSQL"
+    },
+    "aws": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-aws"],
+      "env": { "AWS_REGION": "us-east-1", "AWS_PROFILE": "default" },
+      "description": "Servidor MCP oficial da AWS para consultas de preços e recursos"
     }
   },
   "tools": [
     "read_file", "write_file", "list_directory",
-    "git_log", "git_diff", "query_database"
+    "git_log", "git_diff", "query_database",
+    "aws_pricing", "aws_resources", "aws_cost_estimate"
   ]
 }
 ```
@@ -249,14 +256,29 @@ resource "aws_secretsmanager_secret_version" "app_secrets" {
 }
 ```
 
-### 💰 **Custos Estimados AWS**
+### 💰 **Custos Estimados AWS (Revisado com MCP AWS)**
 ```bash
-# Recursos AWS (us-east-1)
-RDS t3.micro (20GB):     ~$15.00/mês
-S3 Bucket (1GB):         ~$0.02/mês  
-CloudFront (1GB):        ~$0.08/mês
-Secrets Manager:         ~$0.40/mês
-Total Estimado:          ~$15.50/mês (~R$ 78/mês)
+# Revisão detalhada com Servidor MCP AWS Oficial
+# Região: us-east-1 | Data: 18/09/2025
+
+# Cenário Free Tier (12 meses)
+RDS t3.micro (Free Tier):    $0.00/mês
+S3 Storage (1GB):            $0.03/mês  
+CloudFront (1GB):            $0.26/mês
+Secrets Manager:             $0.41/mês
+Total Free Tier:             $0.70/mês (~R$ 3.50/mês)
+
+# Cenário Produção Pequena
+RDS t3.micro:               $12.24/mês
+S3 Storage (5GB):            $0.12/mês
+CloudFront (10GB):           $0.85/mês
+Secrets Manager:             $0.41/mês
+Total Produção:             $13.62/mês (~R$ 68/mês)
+
+# Otimizações Disponíveis:
+- Reserved Instances: 30-60% desconto
+- S3 Intelligent Tiering: 20-40% economia
+- Free Tier: 750h RDS + 5GB S3 gratuitos
 ```
 
 ### 🚀 **Deploy AWS (Demonstrativo)**

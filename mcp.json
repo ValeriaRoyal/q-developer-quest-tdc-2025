@@ -24,6 +24,15 @@
       "env": {
         "POSTGRES_CONNECTION_STRING": "${DATABASE_URL}"
       }
+    },
+    "aws": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-aws"],
+      "env": {
+        "AWS_REGION": "us-east-1",
+        "AWS_PROFILE": "default"
+      },
+      "description": "Servidor MCP oficial da AWS para consultas de preços e recursos"
     }
   },
   "tools": [
@@ -56,6 +65,21 @@
       "name": "query_database",
       "description": "Execute SQL queries on PostgreSQL database",
       "server": "postgres"
+    },
+    {
+      "name": "aws_pricing",
+      "description": "Get AWS service pricing information",
+      "server": "aws"
+    },
+    {
+      "name": "aws_resources",
+      "description": "List and describe AWS resources",
+      "server": "aws"
+    },
+    {
+      "name": "aws_cost_estimate",
+      "description": "Estimate costs for AWS infrastructure",
+      "server": "aws"
     }
   ],
   "resources": [
@@ -68,6 +92,11 @@
       "uri": "git:///media/val/Novo volume/catalogo-hotwheels",
       "name": "Git Repository",
       "description": "Git repository for version control"
+    },
+    {
+      "uri": "aws://pricing",
+      "name": "AWS Pricing",
+      "description": "AWS service pricing and cost estimation"
     }
   ],
   "metadata": {
@@ -76,6 +105,8 @@
     "language": "TypeScript",
     "ai_assistant": "Amazon Q Developer",
     "event": "TDC São Paulo 2025",
-    "ai_contribution": "94%"
+    "ai_contribution": "94%",
+    "aws_mcp_enabled": true,
+    "pricing_review": "enabled"
   }
 }
