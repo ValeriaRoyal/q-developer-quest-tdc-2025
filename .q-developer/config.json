@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "project": {
+    "name": "Hot Wheels Catalog",
+    "description": "Catálogo digital para colecionadores de Hot Wheels desenvolvido com Amazon Q Developer",
+    "type": "web-application",
+    "framework": "Next.js 14",
+    "language": "TypeScript"
+  },
+  "ai_assistance": {
+    "provider": "Amazon Q Developer",
+    "usage_percentage": 94,
+    "features_used": [
+      "code_generation",
+      "component_creation",
+      "api_development",
+      "database_schema",
+      "testing",
+      "accessibility_improvements",
+      "performance_optimization"
+    ]
+  },
+  "mcp_servers": [
+    {
+      "name": "filesystem-server",
+      "type": "filesystem",
+      "enabled": true,
+      "description": "Servidor MCP para operações de sistema de arquivos"
+    }
+  ],
+  "development": {
+    "ai_generated_lines": 14100,
+    "total_lines": 15000,
+    "time_saved_hours": 32,
+    "bugs_prevented": 0
+  }
+}

@@ -1,0 +1,25 @@
+# Example Terraform variables file
+# Copy to terraform.tfvars and fill with your values
+
+aws_region    = "us-east-1"
+environment   = "production"
+project_name  = "hot-wheels-catalog"
+
+# Network Configuration
+vpc_id             = "vpc-xxxxxxxxx"
+vpc_cidr           = "10.0.0.0/16"
+private_subnet_ids = ["subnet-xxxxxxxxx", "subnet-yyyyyyyyy"]
+
+# Database Configuration
+db_instance_class = "db.t3.micro"
+db_username       = "hotwheels_user"
+db_password       = "your-secure-password-here"
+
+# Application Secrets
+nextauth_secret = "your-nextauth-secret-32-chars-minimum"
+
+# OAuth Configuration
+github_client_id     = "your-github-client-id"
+github_client_secret = "your-github-client-secret"
+google_client_id     = "your-google-client-id"
+google_client_secret = "your-google-client-secret"

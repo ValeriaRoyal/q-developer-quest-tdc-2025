@@ -1,0 +1,81 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "hot-wheels-catalog-mcp",
+  "description": "MCP configuration for Hot Wheels Catalog project developed with Amazon Q Developer",
+  "version": "1.0.0",
+  "servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/media/val/Novo volume/catalogo-hotwheels"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "git": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-git", "--repository", "/media/val/Novo volume/catalogo-hotwheels"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-postgres"],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "${DATABASE_URL}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Read file contents from the project",
+      "server": "filesystem"
+    },
+    {
+      "name": "write_file", 
+      "description": "Write file contents to the project",
+      "server": "filesystem"
+    },
+    {
+      "name": "list_directory",
+      "description": "List directory contents",
+      "server": "filesystem"
+    },
+    {
+      "name": "git_log",
+      "description": "Show git commit history",
+      "server": "git"
+    },
+    {
+      "name": "git_diff",
+      "description": "Show git differences",
+      "server": "git"
+    },
+    {
+      "name": "query_database",
+      "description": "Execute SQL queries on PostgreSQL database",
+      "server": "postgres"
+    }
+  ],
+  "resources": [
+    {
+      "uri": "file:///media/val/Novo volume/catalogo-hotwheels",
+      "name": "Project Root",
+      "description": "Hot Wheels Catalog project root directory"
+    },
+    {
+      "uri": "git:///media/val/Novo volume/catalogo-hotwheels",
+      "name": "Git Repository",
+      "description": "Git repository for version control"
+    }
+  ],
+  "metadata": {
+    "project": "Hot Wheels Catalog",
+    "framework": "Next.js 14",
+    "language": "TypeScript",
+    "ai_assistant": "Amazon Q Developer",
+    "event": "TDC São Paulo 2025",
+    "ai_contribution": "94%"
+  }
+}
