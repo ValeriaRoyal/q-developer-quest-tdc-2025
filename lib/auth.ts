@@ -1,19 +1,16 @@
 import { NextAuthOptions } from 'next-auth'
-import { DrizzleAdapter } from '@auth/drizzle-adapter'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
-import { db } from '@/db/client'
 
 export const authOptions: NextAuthOptions = {
-  adapter: DrizzleAdapter(db),
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      clientId: process.env.GITHUB_CLIENT_ID || 'fallback-github-id',
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || 'fallback-github-secret',
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID || 'fallback-google-id',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'fallback-google-secret',
     }),
   ],
   session: {
