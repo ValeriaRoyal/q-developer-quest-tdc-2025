@@ -185,7 +185,20 @@ q chat --mcp-config mcp.json
 # - write_file: Escrever arquivos
 # - git_log: Histórico de commits
 # - query_database: Consultas SQL
+# - aws_pricing: Consultar preços AWS
+# - aws_resources: Listar recursos AWS
+# - aws_cost_estimate: Estimar custos
 ```
+
+### 🎵 **Vibe Coding Aplicado**
+Este projeto demonstra **Vibe Coding** - metodologia que combina fluxo criativo natural com colaboração IA-humano em tempo real:
+
+- **94% do código** gerado via conversação natural com Amazon Q Developer
+- **Iteração rápida** com feedback imediato da IA
+- **Contexto compartilhado** através de servidores MCP
+- **Fluxo criativo contínuo** sem interrupções técnicas
+
+Veja o [guia completo de Vibe Coding & MCP](./docs/vibe-coding-mcp-guide.md) aplicado no projeto.
 
 ## 🏗️ Infrastructure as Code (AWS)
 
