@@ -1,0 +1,65 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "hot-wheels-real-mcp-only",
+  "description": "APENAS servidores MCP reais e funcionais - sem hardcode",
+  "version": "1.0.0",
+  "servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/media/val/Novo volume/catalogo-hotwheels"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "description": "✅ REAL - Servidor MCP oficial para sistema de arquivos"
+    },
+    "aws-pricing": {
+      "command": "python",
+      "args": ["-m", "awslabs.aws_pricing_mcp_server"],
+      "env": {
+        "AWS_REGION": "us-east-1"
+      },
+      "description": "✅ REAL - Servidor MCP oficial AWS Labs para preços"
+    }
+  },
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Ler arquivos do projeto (REAL)",
+      "server": "filesystem"
+    },
+    {
+      "name": "write_file",
+      "description": "Escrever arquivos (REAL)",
+      "server": "filesystem"
+    },
+    {
+      "name": "list_files",
+      "description": "Listar arquivos (REAL)",
+      "server": "filesystem"
+    },
+    {
+      "name": "get_pricing",
+      "description": "Obter preços AWS reais (REAL)",
+      "server": "aws-pricing"
+    },
+    {
+      "name": "calculate_cost",
+      "description": "Calcular custos AWS reais (REAL)",
+      "server": "aws-pricing"
+    }
+  ],
+  "verification": {
+    "filesystem_server": "✅ Verificado no NPM - @modelcontextprotocol/server-filesystem@2025.8.21",
+    "aws_server": "✅ Verificado no GitHub - awslabs/mcp",
+    "hardcode_removed": true,
+    "fictional_servers_removed": true
+  },
+  "installation": {
+    "filesystem": "npm install -g @modelcontextprotocol/server-filesystem",
+    "aws": "git clone https://github.com/awslabs/mcp.git && cd mcp/src/aws-pricing-mcp-server && uv sync"
+  },
+  "usage": {
+    "command": "q chat --mcp-config mcp-real-only.json",
+    "note": "Apenas funcionalidades reais, sem simulações"
+  }
+}
