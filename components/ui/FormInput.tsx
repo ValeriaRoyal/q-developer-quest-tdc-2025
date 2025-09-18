@@ -59,7 +59,7 @@ export function FormInput({
         htmlFor={id}
         className={clsx(
           "mb-1 block text-sm",
-          disabled ? "text-gray-400 dark:text-gray-500" : computedError ? "text-red-600 dark:text-red-400" : "text-gray-800 dark:text-gray-200"
+          disabled ? "text-gray-400 dark:text-white" : computedError ? "text-red-600 dark:text-red-400" : "text-gray-800 dark:text-gray-200"
         )}
       >
         {label}
@@ -90,7 +90,7 @@ export function FormInput({
             "placeholder:text-gray-500 dark:placeholder:text-gray-400 placeholder:opacity-100",
             sizeCls,
             locked && "select-text",
-            disabled && "text-gray-400 dark:text-gray-500"
+            disabled && "text-gray-400 dark:text-white"
           )}
           value={value}
           defaultValue={defaultValue}
@@ -113,7 +113,7 @@ export function FormInput({
             className={clsx(
               "pointer-events-none pr-1",
               size === "large" ? "text-xl" : "text-base",
-              (locked || disabled) ? "text-gray-400 dark:text-gray-500" : "text-gray-500 dark:text-gray-400"
+              (locked || disabled) ? "text-gray-400 dark:text-white" : "text-gray-500 dark:text-gray-400"
             )}
           >
             {rightIcon}

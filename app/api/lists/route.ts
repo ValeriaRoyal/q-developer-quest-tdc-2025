@@ -1,48 +1,59 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 import { db } from '@/db/client'
 import { lists } from '@/db/schema'
 import { eq, desc } from 'drizzle-orm'
 
 export async function GET() {
   try {
-    console.log('GET /api/lists - Buscando listas...')
+    const session = await getServerSession(authOptions)
+    const userId = session?.user?.id || 'dev-user'
 
     const userLists = await db
       .select()
       .from(lists)
-      .where(eq(lists.userId, 'dev-user'))
+      .where(eq(lists.userId, userId))
       .orderBy(desc(lists.createdAt))
 
-    console.log(`GET /api/lists - Encontradas ${userLists.length} listas`)
-
     return NextResponse.json({ data: userLists })
-  } catch (error) {
-    console.error('GET /api/lists error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  } catch (error: any) {
+    console.error('GET /api/lists error:', error?.message || error)
+    return NextResponse.json({ 
+      error: 'Erro ao buscar listas',
+      details: process.env.NODE_ENV === 'development' ? error?.message : undefined
+    }, { status: 500 })
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    console.log('POST /api/lists - Criando lista...')
+    const session = await getServerSession(authOptions)
+    const userId = session?.user?.id || 'dev-user'
     
     const body = await request.json()
+
+    if (!body.nome) {
+      return NextResponse.json({ error: 'Nome é obrigatório' }, { status: 400 })
+    }
 
     const [newList] = await db
       .insert(lists)
       .values({
-        ...body,
-        userId: 'dev-user',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        userId,
+        nome: body.nome,
+        descricao: body.descricao || null,
+        isPublic: body.isPublic || false,
+        slug: body.slug || null,
       })
       .returning()
 
-    console.log('POST /api/lists - Lista criada:', newList.id)
-
     return NextResponse.json({ data: newList }, { status: 201 })
-  } catch (error) {
-    console.error('POST /api/lists error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  } catch (error: any) {
+    console.error('POST /api/lists error:', error?.message || error)
+    return NextResponse.json({ 
+      error: 'Erro ao criar lista',
+      details: process.env.NODE_ENV === 'development' ? error?.message : undefined
+    }, { status: 500 })
   }
 }

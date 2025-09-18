@@ -1,12 +1,5 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    optimizeCss: true,
-  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
@@ -22,4 +15,4 @@ const nextConfig = {
   swcMinify: true,
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextConfig

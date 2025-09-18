@@ -16,7 +16,7 @@ export function Loading({ size = 'md', text, className }: LoadingProps) {
   return (
     <div className={clsx('flex flex-col items-center justify-center gap-2', className)}>
       <svg 
-        className={clsx('animate-spin text-[#FF6600]', sizeStyles[size])} 
+        className={clsx('animate-spin text-orange-600 dark:text-orange-400', sizeStyles[size])} 
         fill="none" 
         viewBox="0 0 24 24"
       >
@@ -35,7 +35,7 @@ export function Loading({ size = 'md', text, className }: LoadingProps) {
         />
       </svg>
       {text && (
-        <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500 dark:text-gray-400 dark:text-gray-500">{text}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-white dark:text-gray-400 dark:text-white">{text}</p>
       )}
     </div>
   )

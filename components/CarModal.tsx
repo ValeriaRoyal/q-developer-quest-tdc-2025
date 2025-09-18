@@ -19,9 +19,11 @@ interface CarModalProps {
   isOpen: boolean
   onClose: () => void
   onSave: (car: Partial<Car>) => void
+  loading?: boolean
 }
 
-export function CarModal({ car, isOpen, onClose, onSave }: CarModalProps) {
+export function CarModal({ car, isOpen, onClose, onSave, loading = false }: CarModalProps) {
+  console.log('🔄 CarModal renderizado - isOpen:', isOpen, 'car:', car)
   const [formData, setFormData] = useState({
     nome: car?.nome || '',
     ano: car?.ano || new Date().getFullYear(),
@@ -109,6 +111,8 @@ export function CarModal({ car, isOpen, onClose, onSave }: CarModalProps) {
             type="submit"
             tone="brand"
             leftIcon={<FontAwesomeIcon icon={faSave} className="h-4 w-4" />}
+            loading={loading}
+            disabled={loading}
             fullWidth
           >
             {car ? 'Salvar' : 'Adicionar'}

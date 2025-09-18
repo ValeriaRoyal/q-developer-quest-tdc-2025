@@ -85,7 +85,7 @@ export function FormTextarea({
           id={id}
           rows={rows}
           className={clsx(
-            "peer w-full bg-transparent outline-none placeholder:text-gray-500 dark:text-gray-400 dark:text-gray-500 placeholder:opacity-100 resize-none rounded-md",
+            "peer w-full bg-transparent outline-none placeholder:text-gray-500 dark:text-gray-400 dark:text-white placeholder:opacity-100 resize-none rounded-md",
             sizeStyles,
             locked && "select-text",
           )}
@@ -103,7 +103,7 @@ export function FormTextarea({
       </div>
 
       {description && !error && (
-        <p id={`${id}-desc`} className="mt-1 text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <p id={`${id}-desc`} className="mt-1 text-xs text-gray-500 dark:text-gray-400 dark:text-white">
           {description}
         </p>
       )}

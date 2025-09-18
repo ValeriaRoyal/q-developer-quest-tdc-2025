@@ -27,7 +27,7 @@ export function PackCard({ pack, onEdit, onDelete }: PackCardProps) {
             {pack.nome}
           </h3>
           <div className="flex items-center gap-2 mt-1">
-            <FontAwesomeIcon icon={faCalendar} className="h-3 w-3 text-gray-400 dark:text-gray-500" />
+            <FontAwesomeIcon icon={faCalendar} className="h-3 w-3 text-gray-400 dark:text-white" />
             <span className="text-sm text-gray-500 dark:text-gray-400">{pack.ano}</span>
           </div>
         </div>

@@ -31,7 +31,7 @@ export function RecentItems({ cars, loading }: RecentItemsProps) {
     <div className="card">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Adicionados Recentemente</h2>
-        <Link href="/cars" className="text-[#FF6600] hover:text-[#E55A00] text-sm">
+        <Link href="/cars" className="text-orange-700 dark:text-orange-300 hover:text-orange-800 dark:hover:text-orange-200 text-sm">
           Ver todos
         </Link>
       </div>
@@ -46,17 +46,17 @@ export function RecentItems({ cars, loading }: RecentItemsProps) {
           {cars.map((car) => (
             <div key={car.id} className="flex items-center space-x-3 p-3 hover:bg-gray-50 dark:bg-gray-900 rounded-lg">
               <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                <span className="text-[#FF6600] font-semibold">
+                <span className="text-orange-700 dark:text-orange-300 font-semibold">
                   {car.nome.charAt(0)}
                 </span>
               </div>
               <div className="flex-1">
                 <h3 className="font-medium text-gray-900 dark:text-gray-100">{car.nome}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500 dark:text-gray-400 dark:text-gray-500">
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-white dark:text-gray-400 dark:text-white">
                   {car.serie} • {car.ano} • {car.raridade}
                 </p>
               </div>
-              <div className="text-xs text-gray-400 dark:text-gray-500 dark:text-gray-400 dark:text-gray-500">
+              <div className="text-xs text-gray-400 dark:text-white dark:text-gray-400 dark:text-white">
                 {new Date(car.createdAt).toLocaleDateString('pt-BR')}
               </div>
             </div>

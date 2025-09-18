@@ -155,7 +155,7 @@ export function DataTable({
                           />
                           <FontAwesomeIcon
                             icon={faArrowUp}
-                            className="h-3.5 w-3.5 hidden group-hover:inline text-gray-400 dark:text-gray-500"
+                            className="h-3.5 w-3.5 hidden group-hover:inline text-gray-400 dark:text-white"
                             aria-hidden="true"
                           />
                         </>

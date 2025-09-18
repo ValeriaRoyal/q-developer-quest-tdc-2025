@@ -26,7 +26,7 @@ export function LoadingSpinner({ size = 'md', text, className = '' }: LoadingSpi
         className={`${sizeClasses[size]} text-orange-500 animate-spin`}
       />
       {text && (
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500 dark:text-gray-400 dark:text-gray-500">{text}</p>
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 dark:text-white dark:text-gray-400 dark:text-white">{text}</p>
       )}
     </div>
   )

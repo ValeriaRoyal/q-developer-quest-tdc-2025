@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 import { db } from '@/db/client'
 import { packs } from '@/db/schema'
 import { eq, and, like, desc, count } from 'drizzle-orm'
@@ -6,7 +8,8 @@ import { eq, and, like, desc, count } from 'drizzle-orm'
 // GET /api/packs
 export async function GET(request: NextRequest) {
   try {
-    console.log('GET /api/packs - Buscando packs...')
+    const session = await getServerSession(authOptions)
+    const userId = session?.user?.id || 'dev-user'
 
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
@@ -20,7 +23,7 @@ export async function GET(request: NextRequest) {
 
     // Construir condições WHERE
     const conditions = [
-      eq(packs.userId, 'dev-user')
+      eq(packs.userId, userId)
     ]
 
     if (q) {
@@ -51,8 +54,6 @@ export async function GET(request: NextRequest) {
       .from(packs)
       .where(and(...conditions))
 
-    console.log(`GET /api/packs - Encontrados ${packsData.length} packs`)
-
     return NextResponse.json({
       data: packsData,
       pagination: {
@@ -62,34 +63,44 @@ export async function GET(request: NextRequest) {
         totalPages: Math.ceil(Number(total) / pageSize)
       }
     })
-  } catch (error) {
-    console.error('GET /api/packs error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  } catch (error: any) {
+    console.error('GET /api/packs error:', error?.message || error)
+    return NextResponse.json({ 
+      error: 'Erro ao buscar packs',
+      details: process.env.NODE_ENV === 'development' ? error?.message : undefined
+    }, { status: 500 })
   }
 }
 
 // POST /api/packs
 export async function POST(request: NextRequest) {
   try {
-    console.log('POST /api/packs - Criando pack...')
+    const session = await getServerSession(authOptions)
+    const userId = session?.user?.id || 'dev-user'
     
     const body = await request.json()
+    
+    // Validação básica
+    if (!body.nome || !body.ano || !body.quantidade) {
+      return NextResponse.json({ error: 'Campos obrigatórios: nome, ano, quantidade' }, { status: 400 })
+    }
     
     const [newPack] = await db
       .insert(packs)
       .values({
         ...body,
-        userId: 'dev-user',
+        userId,
         createdAt: new Date(),
         updatedAt: new Date(),
       })
       .returning()
 
-    console.log('POST /api/packs - Pack criado:', newPack.id)
-
     return NextResponse.json({ data: newPack }, { status: 201 })
-  } catch (error) {
-    console.error('POST /api/packs error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  } catch (error: any) {
+    console.error('POST /api/packs error:', error?.message || error)
+    return NextResponse.json({ 
+      error: 'Erro ao salvar pack',
+      details: process.env.NODE_ENV === 'development' ? error?.message : undefined
+    }, { status: 500 })
   }
 }

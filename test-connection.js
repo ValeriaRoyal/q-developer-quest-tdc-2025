@@ -1,3 +1,6 @@
+// Carregar variáveis do .env.local
+require('dotenv').config({ path: '.env.local' });
+
 const { drizzle } = require('drizzle-orm/postgres-js');
 const postgres = require('postgres');
 

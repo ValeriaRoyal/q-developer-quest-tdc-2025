@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom text colors */
+.dark .dark\:text-white {
+  --tw-text-opacity: 1;
+  color: white !important;
+}
+
 /* Força aplicação global do modo escuro */
 @layer base {
   html {
@@ -121,9 +127,9 @@
 @layer base {
   :root {
     /* Primary colors mantidas (Hot Wheels brand) */
-    --md-sys-color-primary: #E65100;
-    --md-sys-color-on-primary: #FFFFFF;
-    --md-sys-color-primary-container: #FFCC9C;
+    --md-sys-color-primary: #FF7800;
+    --md-sys-color-on-primary: #000000;
+    --md-sys-color-primary-container: #FFE0CC;
     --md-sys-color-on-primary-container: #2A1700;
     
     /* Updated Secondary colors from design system */
@@ -297,9 +303,9 @@
     --md-sys-color-outline-variant: #475569;
     
     /* Melhor contraste para primary no dark mode */
-    --md-sys-color-primary: #FF8A50;
+    --md-sys-color-primary: #FF9A50;
     --md-sys-color-on-primary: #000000;
-    --md-sys-color-primary-container: #B45309;
+    --md-sys-color-primary-container: #CC5500;
     --md-sys-color-on-primary-container: #FFFFFF;
   }
 

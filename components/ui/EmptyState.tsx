@@ -67,7 +67,7 @@ export function EmptyState({
             <div className="h-24 w-24 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center bg-gray-50 dark:bg-gray-700/50">
               <FontAwesomeIcon 
                 icon={iconToUse} 
-                className="h-10 w-10 text-gray-400 dark:text-gray-500" 
+                className="h-10 w-10 text-gray-400 dark:text-white" 
                 aria-hidden="true" 
               />
               <span className="sr-only">ilustração</span>
@@ -76,9 +76,9 @@ export function EmptyState({
         </div>
 
         {/* Título + descrição */}
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
           {title}
-        </h3>
+        </h2>
         {description && (
           <p className={clsx(
             'mt-2 text-gray-700 dark:text-gray-300 leading-relaxed',

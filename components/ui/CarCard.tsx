@@ -29,8 +29,8 @@ export function CarCard({
     <Card className="hover:shadow-lg transition-shadow">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2">
-          <div className="p-2 bg-[#FF6600] bg-opacity-10 rounded-lg">
-            <FontAwesomeIcon icon={faCar} className="h-5 w-5 text-[#FF6600]" />
+          <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
+            <FontAwesomeIcon icon={faCar} className="h-5 w-5 text-orange-700 dark:text-orange-300" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 line-clamp-1">
@@ -47,7 +47,7 @@ export function CarCard({
           >
             <FontAwesomeIcon 
               icon={faHeart}
-              className={`h-4 w-4 ${isFavorite ? 'text-red-500' : 'text-gray-400 dark:text-gray-500'}`} 
+              className={`h-4 w-4 ${isFavorite ? 'text-red-500' : 'text-gray-400 dark:text-white'}`} 
             />
           </button>
         )}

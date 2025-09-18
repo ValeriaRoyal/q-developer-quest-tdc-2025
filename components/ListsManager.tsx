@@ -121,15 +121,15 @@ export function ListsManager() {
                   icon={faList} 
                   className="w-5 h-5 text-blue-600 dark:text-blue-400" 
                 />
-                <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                <h2 className="font-semibold text-gray-900 dark:text-gray-100">
                   {list.nome}
-                </h3>
+                </h2>
               </div>
               
               <div className="flex items-center gap-2">
                 <FontAwesomeIcon 
                   icon={list.isPublic ? faUsers : faLock} 
-                  className={`w-4 h-4 ${list.isPublic ? 'text-green-500' : 'text-gray-400 dark:text-gray-500'}`}
+                  className={`w-4 h-4 ${list.isPublic ? 'text-green-500' : 'text-gray-400 dark:text-white'}`}
                 />
                 
                 <Dropdown
@@ -165,12 +165,12 @@ export function ListsManager() {
           >
             <FontAwesomeIcon 
               icon={faPlus} 
-              className="w-8 h-8 text-gray-400 dark:text-gray-500 mb-3" 
+              className="w-8 h-8 text-gray-400 dark:text-white mb-3" 
             />
-            <h3 className="font-medium text-gray-600 dark:text-gray-400 mb-2">
+            <h2 className="font-medium text-gray-600 dark:text-gray-400 mb-2">
               Criar Nova Lista
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-500">
+            </h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Organize seus carros por tema, ano ou categoria
             </p>
           </button>

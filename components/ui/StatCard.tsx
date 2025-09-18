@@ -72,13 +72,13 @@ export function StatCard({
           <div className={`text-2xl font-bold ${styles.value} mb-1`}>
             {value}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-2">
+          <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-white mb-2">
             {title}
           </div>
           
           {trend && (
-            <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
-              <span className={trend.value > 0 ? 'text-green-600 dark:text-green-400' : trend.value < 0 ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400 dark:text-gray-500'}>
+            <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-white">
+              <span className={trend.value > 0 ? 'text-green-600 dark:text-green-400' : trend.value < 0 ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400 dark:text-white'}>
                 {trend.value > 0 ? '+' : ''}{trend.value}
               </span>
               {' '}

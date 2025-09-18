@@ -47,10 +47,7 @@ export function Header() {
 
   return (
     <header 
-      className="sticky top-0 z-40 border-b border-blue-200 dark:border-gray-700"
-      style={{ 
-        backgroundColor: '#0057b8'
-      }}
+      className="sticky top-0 z-40 border-b border-blue-200 dark:border-gray-700 bg-blue-700"
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16">
@@ -147,7 +144,7 @@ export function Header() {
               </div>
             ) : (
               <Link href="/auth/dev-signin" style={{ textDecoration: 'none' }}>
-                <button className="bg-[#FF6600] hover:bg-[#E55A00] text-white px-4 py-2 rounded-md text-sm font-medium">
+                <button className="bg-[#FF6600] hover:bg-[#E55A00] text-black px-4 py-2 rounded-md text-sm font-medium">
                   Entrar
                 </button>
               </Link>
@@ -157,7 +154,7 @@ export function Header() {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-blue-200 dark:border-gray-700 bg-[#0057b8] animate-slide-down">
+          <div className="md:hidden border-t border-blue-200 dark:border-gray-700 bg-blue-700 animate-slide-down">
             <div className="px-2 pt-2 pb-3">
               <Link href="/cars" style={{ textDecoration: 'none' }}>
                 <button className="text-white hover:text-blue-200 block px-3 py-2 text-base font-medium w-full text-left flex items-center gap-2">

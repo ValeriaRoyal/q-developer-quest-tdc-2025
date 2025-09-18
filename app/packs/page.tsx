@@ -55,7 +55,7 @@ export default function PacksPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowAddModal(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500/40 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500/40 transition-colors"
               >
                 <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />
                 Adicionar Pack

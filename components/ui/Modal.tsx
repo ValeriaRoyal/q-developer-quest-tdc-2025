@@ -78,7 +78,7 @@ export function Modal({
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className="p-2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+                className="p-2 text-gray-400 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
               >
                 <FontAwesomeIcon icon={faTimes} className="h-4 w-4" />
               </button>

@@ -9,6 +9,7 @@ import { CarModal } from './CarModal'
 import { SearchBar } from './SearchBar'
 import { Breadcrumb } from './Breadcrumb'
 import { Icon } from './Icon'
+import { Button } from './ui/Button'
 import { LoadingSpinner } from './ui/LoadingSpinner'
 import { ErrorBoundary } from './ErrorBoundary'
 
@@ -26,7 +27,8 @@ export function CarsPage() {
   const [selectedCar, setSelectedCar] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [showFilters, setShowFilters] = useState(false)
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list')
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [isSaving, setIsSaving] = useState(false)
 
   const { data, isLoading, refetch, error } = useQuery({
     queryKey: ['cars', filters],
@@ -73,8 +75,10 @@ export function CarsPage() {
   }
 
   const handleAdd = () => {
+    console.log('🔄 Botão adicionar clicado')
     setSelectedCar(null)
     setIsModalOpen(true)
+    console.log('✅ Modal deve abrir - isModalOpen:', true)
   }
 
   const handleModalClose = () => {
@@ -103,7 +107,7 @@ export function CarsPage() {
               className="mx-auto mb-4 text-red-600 dark:text-red-400"
               aria-label="Erro"
             />
-            <h2 className="title-large mb-4">Erro ao carregar carros</h2>
+            <h1 className="title-large mb-4">Erro ao carregar carros</h1>
             <p className="body-medium mb-6" style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>
               Não foi possível carregar a lista de carros. Tente novamente.
             </p>
@@ -132,14 +136,14 @@ export function CarsPage() {
           </div>
           
           <div className="flex items-center gap-2">
-            <button onClick={handleAdd} className="md-filled-button flex items-center">
-              <Icon 
-                name="plus"
-                size="sm"
-                className="mr-2"
-                decorative={true}
-              />
-              Adicionar
+            <button 
+              onClick={() => {
+                setSelectedCar(null)
+                setIsModalOpen(true)
+              }}
+              className="px-5 py-3 bg-orange-600 hover:bg-orange-700 text-black font-bold rounded-lg flex items-center gap-2 transition-colors focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            >
+              + Adicionar Carro
             </button>
           </div>
         </div>
@@ -178,13 +182,185 @@ export function CarsPage() {
           />
         )}
 
+        {/* Modal para adicionar carro */}
         {isModalOpen && (
-          <CarModal
-            car={selectedCar}
-            isOpen={isModalOpen}
-            onClose={handleModalClose}
-            onSave={handleSave}
-          />
+          <div 
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1000
+            }}
+            onClick={() => setIsModalOpen(false)}
+          >
+            <div 
+              className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              style={{
+                padding: '30px',
+                borderRadius: '10px',
+                maxWidth: '500px',
+                width: '90%',
+                maxHeight: '80vh',
+                overflowY: 'auto'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 style={{ marginBottom: '20px', fontSize: '24px', fontWeight: 'bold' }}>
+                Adicionar Novo Carro
+              </h2>
+              
+              <form onSubmit={async (e) => {
+                e.preventDefault()
+                setIsSaving(true)
+                
+                const formData = new FormData(e.target as HTMLFormElement)
+                const carData = {
+                  nome: formData.get('nome'),
+                  serie: formData.get('serie') || 'Hot Wheels',
+                  ano: parseInt(formData.get('ano') as string),
+                  raridade: formData.get('raridade'),
+                  tipo: formData.get('tipo'),
+                  observacoes: formData.get('observacoes')
+                }
+                
+                try {
+                  const response = await fetch('/api/cars', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(carData)
+                  })
+                  
+                  if (response.ok) {
+                    await refetch()
+                    setIsModalOpen(false)
+                    alert('Carro adicionado com sucesso!')
+                  } else {
+                    alert('Erro ao adicionar carro')
+                  }
+                } catch (error) {
+                  alert('Erro ao adicionar carro')
+                } finally {
+                  setIsSaving(false)
+                }
+              }}>
+                <div style={{ marginBottom: '15px' }}>
+                  <label className="block mb-2 font-bold text-gray-900 dark:text-white">
+                    Nome do Carro *
+                  </label>
+                  <input 
+                    name="nome"
+                    required
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    placeholder="Ex: Lamborghini Huracán"
+                  />
+                </div>
+                
+                <div style={{ marginBottom: '15px' }}>
+                  <label className="block mb-2 font-bold text-gray-900 dark:text-white">
+                    Série *
+                  </label>
+                  <select 
+                    name="serie"
+                    required
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  >
+                    <option value="Hot Wheels">Hot Wheels</option>
+                    <option value="Matchbox">Matchbox</option>
+                    <option value="Fast & Furious">Fast & Furious</option>
+                    <option value="Car Culture">Car Culture</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Team Transport">Team Transport</option>
+                    <option value="Boulevard">Boulevard</option>
+                  </select>
+                </div>
+                
+                <div style={{ marginBottom: '15px' }}>
+                  <label className="block mb-2 font-bold text-gray-900 dark:text-white">
+                    Ano *
+                  </label>
+                  <input 
+                    name="ano"
+                    type="number"
+                    required
+                    min="1968"
+                    max="2025"
+                    defaultValue="2024"
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  />
+                </div>
+                
+                <div style={{ marginBottom: '15px' }}>
+                  <label className="block mb-2 font-bold text-gray-900 dark:text-white">
+                    Raridade *
+                  </label>
+                  <select 
+                    name="raridade"
+                    required
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  >
+                    <option value="common">Comum</option>
+                    <option value="rare">Raro</option>
+                    <option value="th">Treasure Hunt</option>
+                    <option value="sth">Super Treasure Hunt</option>
+                  </select>
+                </div>
+                
+                <div style={{ marginBottom: '15px' }}>
+                  <label className="block mb-2 font-bold text-gray-900 dark:text-white">
+                    Tipo
+                  </label>
+                  <select 
+                    name="tipo"
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  >
+                    <option value="blister">Blister</option>
+                    <option value="loose">Loose</option>
+                    <option value="premium">Premium</option>
+                  </select>
+                </div>
+                
+                <div style={{ marginBottom: '20px' }}>
+                  <label className="block mb-2 font-bold text-gray-900 dark:text-white">
+                    Observações
+                  </label>
+                  <textarea 
+                    name="observacoes"
+                    rows={3}
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-vertical"
+                    placeholder="Observações sobre o carro..."
+                  />
+                </div>
+                
+                <div className="flex gap-3">
+                  <button 
+                    type="submit"
+                    disabled={isSaving}
+                    className={`flex-1 p-3 rounded-lg font-bold transition-colors ${
+                      isSaving 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-orange-600 hover:bg-orange-700'
+                    } text-black`}
+                  >
+                    {isSaving ? 'Salvando...' : 'Adicionar Carro'}
+                  </button>
+                  
+                  <button 
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         )}
       </main>
     </div>

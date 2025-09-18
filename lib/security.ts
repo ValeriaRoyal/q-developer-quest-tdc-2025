@@ -8,6 +8,11 @@ export function securityHeaders(response: NextResponse) {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
   
+  // CSP Header
+  response.headers.set('Content-Security-Policy', 
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+  )
+  
   if (process.env.NODE_ENV === 'production') {
     response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
   }
@@ -19,18 +24,18 @@ export async function validateRequest(request: NextRequest) {
   const ip = getClientIP(request)
   const pathname = request.nextUrl.pathname
   
-  // Rate limiting por endpoint
+  // Rate limiting mais permissivo para desenvolvimento
   const limits: Record<string, number> = {
-    '/api/auth': 5,
-    '/api/cars': 30,
-    '/api/packs': 30,
-    '/api/favorites': 20,
-    '/api/lists': 20
+    '/api/auth': 20,     // Aumentado para NextAuth
+    '/api/cars': 50,     // Aumentado para desenvolvimento
+    '/api/packs': 50,
+    '/api/favorites': 30,
+    '/api/lists': 30
   }
   
   const limit = Object.entries(limits).find(([path]) => 
     pathname.startsWith(path)
-  )?.[1] || 100
+  )?.[1] || 50 // Limite geral reduzido
   
   const result = limiter.check(request, limit, ip)
   
@@ -51,7 +56,10 @@ export async function validateRequest(request: NextRequest) {
 
 export function sanitizeInput(input: any): any {
   if (typeof input === 'string') {
-    return input.trim().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    return input.trim()
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+      .replace(/javascript:/gi, '')
+      .replace(/on\w+\s*=/gi, '')
   }
   
   if (Array.isArray(input)) {

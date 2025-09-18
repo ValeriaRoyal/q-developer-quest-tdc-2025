@@ -69,7 +69,7 @@ export function FormSelect({
         htmlFor={id}
         className={clsx(
           "mb-1 block text-sm",
-          disabled ? "text-gray-400 dark:text-gray-500" : error ? "text-red-600 dark:text-red-400" : "text-gray-800 dark:text-gray-200"
+          disabled ? "text-gray-400 dark:text-white" : error ? "text-red-600 dark:text-red-400" : "text-gray-800 dark:text-gray-200"
         )}
       >
         {label}
@@ -117,13 +117,13 @@ export function FormSelect({
           className={clsx(
             "pointer-events-none",
             size === "large" ? "h-5 w-5" : "h-4 w-4",
-            locked || disabled ? "text-gray-400 dark:text-gray-500" : "text-gray-500 dark:text-gray-400 dark:text-gray-500"
+            locked || disabled ? "text-gray-400 dark:text-white" : "text-gray-500 dark:text-gray-400 dark:text-white"
           )}
         />
       </div>
 
       {description && !error && (
-        <p id={`${id}-desc`} className="mt-1 text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <p id={`${id}-desc`} className="mt-1 text-xs text-gray-500 dark:text-gray-400 dark:text-white">
           {description}
         </p>
       )}

@@ -140,7 +140,7 @@ export function InfoTooltip({
         id={pos.id}
         role="tooltip"
         className={clsx(
-          'pointer-events-none absolute z-50 max-w-[212px] md:max-w-[304px] rounded-xl bg-orange-600 dark:bg-orange-700 px-4 py-3 text-sm leading-relaxed text-white shadow-lg',
+          'pointer-events-none absolute z-50 max-w-[212px] md:max-w-[304px] rounded-xl bg-orange-600 dark:bg-orange-700 px-4 py-3 text-sm leading-relaxed text-black shadow-lg',
           'opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:scale-100',
           'transition-all duration-200 ease-out',
           pos.box

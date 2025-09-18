@@ -57,7 +57,7 @@ export function SearchBar({ onSearch, onFilterChange, placeholder = "Buscar carr
       <div className="flex-1">
         <FormInput
           id="search"
-          label=""
+          label="Buscar"
           value={query}
           onChange={handleChange}
           placeholder={placeholder}
@@ -140,13 +140,13 @@ export function SearchBar({ onSearch, onFilterChange, placeholder = "Buscar carr
               <div className="flex gap-2 pt-2">
                 <button
                   onClick={clearFilters}
-                  className="flex-1 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500 dark:text-gray-400 dark:text-gray-500 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:bg-gray-900"
+                  className="flex-1 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 dark:text-white dark:text-gray-400 dark:text-white border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:bg-gray-900"
                 >
                   Limpar
                 </button>
                 <button
                   onClick={() => setShowFilters(false)}
-                  className="flex-1 px-3 py-2 text-sm bg-[#FF6600] text-white rounded-md hover:bg-[#E55A00]"
+                  className="flex-1 px-3 py-2 text-sm bg-[#FF6600] text-black rounded-md hover:bg-[#E55A00]"
                 >
                   Aplicar
                 </button>

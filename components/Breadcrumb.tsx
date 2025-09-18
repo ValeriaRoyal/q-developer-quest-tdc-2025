@@ -20,7 +20,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
         <li>
           <Link 
             href="/" 
-            className="text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:text-gray-300 transition-colors"
+            className="text-gray-500 dark:text-gray-400 dark:text-white hover:text-gray-700 dark:text-gray-300 transition-colors"
             aria-label="Página inicial"
           >
             <FontAwesomeIcon 
@@ -36,14 +36,14 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
           <li key={index} className="flex items-center">
             <FontAwesomeIcon 
               icon={faChevronRight}
-              className="w-4 h-4 text-gray-400 dark:text-gray-500 mx-2"
+              className="w-4 h-4 text-gray-400 dark:text-white mx-2"
               aria-hidden="true"
             />
             
             {item.href ? (
               <Link 
                 href={item.href}
-                className="text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:text-gray-300 transition-colors"
+                className="text-gray-500 dark:text-gray-400 dark:text-white hover:text-gray-700 dark:text-gray-300 transition-colors"
               >
                 {item.label}
               </Link>

@@ -14,9 +14,9 @@ export default function DevSignInPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-gray-900">
             🏎️ Hot Wheels Catalog
-          </h2>
+          </h1>
           <p className="mt-2 text-gray-600">
             Modo de desenvolvimento
           </p>
@@ -25,11 +25,11 @@ export default function DevSignInPage() {
         <div className="space-y-4">
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
             <div className="flex">
-              <div className="text-yellow-400 mr-3">⚠️</div>
+              <div className="text-yellow-600 mr-3">⚠️</div>
               <div>
-                <h3 className="text-sm font-medium text-yellow-800">
+                <h2 className="text-sm font-medium text-yellow-800">
                   OAuth não configurado
-                </h3>
+                </h2>
                 <p className="text-sm text-yellow-700 mt-1">
                   Configure as credenciais no .env.local para usar GitHub/Google
                 </p>
@@ -40,7 +40,7 @@ export default function DevSignInPage() {
           <button
             onClick={handleDevLogin}
             disabled={loading}
-            className="w-full bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 disabled:opacity-50"
+            className="w-full bg-orange-600 text-black py-2 px-4 rounded-lg hover:bg-orange-700 disabled:opacity-50"
           >
             {loading ? 'Entrando...' : 'Entrar como Desenvolvedor'}
           </button>

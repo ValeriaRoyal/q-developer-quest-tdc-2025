@@ -35,10 +35,10 @@ export default function SignInPage() {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <div className="text-4xl mb-4">🚗</div>
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
             Catálogo Hot Wheels
-          </h2>
-          <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-500">
+          </h1>
+          <p className="mt-2 text-gray-600 dark:text-gray-400">
             Entre para gerenciar sua coleção
           </p>
         </div>
@@ -68,7 +68,7 @@ export default function SignInPage() {
           </button>
         </div>
 
-        <div className="text-center text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <div className="text-center text-sm text-gray-500 dark:text-gray-400">
           Ao entrar, você concorda com nossos termos de uso
         </div>
       </div>

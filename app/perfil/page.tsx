@@ -45,10 +45,10 @@ export default function PerfilPage() {
                   Editar
                 </Link>
               </div>
-              <p className="body-large text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-4">
+              <p className="body-large text-gray-600 dark:text-gray-400 mb-4">
                 Colecionador Hot Wheels desde 2024
               </p>
-              <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
+              <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400">
                 <div className="flex items-center gap-1">
                   <FontAwesomeIcon icon={faCalendar} className="w-4 h-4" />
                   Membro desde Jan 2024
@@ -67,25 +67,25 @@ export default function PerfilPage() {
           <div className="md-card text-center">
             <FontAwesomeIcon icon={faCar} className="w-8 h-8 text-orange-500 mb-3" />
             <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-1">0</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">Carros</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Carros</div>
           </div>
           
           <div className="md-card text-center">
             <FontAwesomeIcon icon={faBox} className="w-8 h-8 text-green-500 mb-3" />
             <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-1">0</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">Packs</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Packs</div>
           </div>
           
           <div className="md-card text-center">
             <FontAwesomeIcon icon={faList} className="w-8 h-8 text-purple-500 mb-3" />
             <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">0</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">Listas</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Listas</div>
           </div>
           
           <div className="md-card text-center">
             <FontAwesomeIcon icon={faHeart} className="w-8 h-8 text-red-500 mb-3" />
             <div className="text-3xl font-bold text-red-600 dark:text-red-400 mb-1">0</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">Favoritos</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Favoritos</div>
           </div>
         </div>
 
@@ -102,8 +102,8 @@ export default function PerfilPage() {
                   <FontAwesomeIcon icon={faCar} className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                 </div>
                 <div>
-                  <div className="font-medium text-gray-400 dark:text-gray-500">Primeiro Carro</div>
-                  <div className="text-sm text-gray-400 dark:text-gray-500">Adicione seu primeiro Hot Wheels</div>
+                  <div className="font-medium text-gray-400 dark:text-white">Primeiro Carro</div>
+                  <div className="text-sm text-gray-400 dark:text-white">Adicione seu primeiro Hot Wheels</div>
                 </div>
               </div>
               
@@ -112,8 +112,8 @@ export default function PerfilPage() {
                   <span className="text-green-600 dark:text-green-400 font-bold text-xs">TH</span>
                 </div>
                 <div>
-                  <div className="font-medium text-gray-400 dark:text-gray-500">Caçador de Tesouros</div>
-                  <div className="text-sm text-gray-400 dark:text-gray-500">Encontre seu primeiro Treasure Hunt</div>
+                  <div className="font-medium text-gray-400 dark:text-white">Caçador de Tesouros</div>
+                  <div className="text-sm text-gray-400 dark:text-white">Encontre seu primeiro Treasure Hunt</div>
                 </div>
               </div>
               
@@ -122,8 +122,8 @@ export default function PerfilPage() {
                   <FontAwesomeIcon icon={faList} className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                 </div>
                 <div>
-                  <div className="font-medium text-gray-400 dark:text-gray-500">Organizador</div>
-                  <div className="text-sm text-gray-400 dark:text-gray-500">Crie sua primeira lista</div>
+                  <div className="font-medium text-gray-400 dark:text-white">Organizador</div>
+                  <div className="text-sm text-gray-400 dark:text-white">Crie sua primeira lista</div>
                 </div>
               </div>
             </div>
@@ -133,9 +133,9 @@ export default function PerfilPage() {
           <div className="md-card">
             <h2 className="title-large mb-4">Atividade Recente</h2>
             <div className="text-center py-8">
-              <FontAwesomeIcon icon={faCalendar} className="w-12 h-12 text-gray-300 mb-3" />
-              <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500">Nenhuma atividade ainda</p>
-              <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+              <FontAwesomeIcon icon={faCalendar} className="w-12 h-12 text-gray-400 dark:text-gray-500 mb-3" />
+              <p className="text-gray-500 dark:text-gray-400">Nenhuma atividade ainda</p>
+              <p className="text-sm text-gray-400 dark:text-white mt-1">
                 Suas ações aparecerão aqui
               </p>
             </div>
@@ -148,8 +148,8 @@ export default function PerfilPage() {
               <Link href="/cars" className="md-text-button">Ver Todos</Link>
             </div>
             <div className="text-center py-12">
-              <FontAwesomeIcon icon={faCar} className="w-16 h-16 text-gray-300 mb-4" />
-              <h3 className="title-medium text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-2">Sua coleção está vazia</h3>
+              <FontAwesomeIcon icon={faCar} className="w-16 h-16 text-gray-400 dark:text-gray-500 mb-4" />
+              <p className="title-medium text-gray-600 dark:text-gray-400 mb-2">Sua coleção está vazia</p>
               <p className="body-medium text-gray-500 dark:text-gray-400 mb-6">
                 Comece adicionando seus primeiros Hot Wheels para ver sua coleção aqui
               </p>

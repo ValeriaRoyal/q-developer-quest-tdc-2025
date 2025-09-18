@@ -79,7 +79,7 @@ export function ConfirmModal({
           />
         </div>
         
-        <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-6">
+        <p className="text-gray-600 dark:text-gray-400 dark:text-white mb-6">
           {message}
         </p>
 

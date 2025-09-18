@@ -81,7 +81,7 @@ export function TextArea({
             'block w-full resize-y rounded-md border outline-none transition disabled:cursor-not-allowed placeholder:text-gray-400 dark:placeholder:text-gray-500',
             density === 'compact' ? 'px-3 py-2 text-sm' : 'px-4 py-3 text-base',
             disabled
-              ? 'bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500'
+              ? 'bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 dark:text-white'
               : locked
               ? 'bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300'
               : error

@@ -8,8 +8,8 @@ export async function middleware(request: NextRequest) {
   // Aplicar headers de segurança
   securityHeaders(response)
   
-  // Rate limiting para APIs
-  if (request.nextUrl.pathname.startsWith('/api/')) {
+  // Rate limiting apenas em produção
+  if (process.env.NODE_ENV === 'production' && request.nextUrl.pathname.startsWith('/api/')) {
     const rateLimitResponse = await validateRequest(request)
     if (rateLimitResponse) {
       return securityHeaders(rateLimitResponse)
@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
     if (isDev && request.nextUrl.pathname === '/') {
       response.cookies.set('dev-session', 'true', { 
         httpOnly: true, 
-        secure: process.env.NODE_ENV === 'production',
+        secure: false, // Em desenvolvimento sempre false
         sameSite: 'strict',
         maxAge: 60 * 60 * 24
       })

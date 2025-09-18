@@ -1,6 +1,6 @@
 'use client'
 
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
 interface CarsListProps {
@@ -22,6 +22,8 @@ export function CarsList({
   onRefetch,
   viewMode = 'list'
 }: CarsListProps) {
+  const queryClient = useQueryClient()
+  
   const deleteMutation = useMutation({
     mutationFn: async (carId: string) => {
       const response = await fetch(`/api/cars/${carId}`, {
@@ -32,6 +34,7 @@ export function CarsList({
     },
     onSuccess: () => {
       toast.success('Carro removido!')
+      queryClient.invalidateQueries({ queryKey: ['cars'] })
       onRefetch()
     },
     onError: () => {
@@ -70,9 +73,9 @@ export function CarsList({
   }
 
   if (loading) {
-    const skeletonClass = viewMode === 'grid' 
-      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
-      : 'space-y-3'
+    const skeletonClass = viewMode === 'list' 
+      ? 'space-y-3'
+      : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'
     
     return (
       <div className={skeletonClass}>
@@ -99,19 +102,19 @@ export function CarsList({
     return (
       <div className="md-card text-center py-12">
         <div className="text-4xl mb-4">🚗</div>
-        <h3 className="title-large mb-2">
+        <h2 className="title-large mb-2">
           Nenhum carro encontrado
-        </h3>
-        <p className="body-medium" style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>
+        </h2>
+        <p className="body-medium text-gray-800 dark:text-gray-100">
           Ajuste os filtros ou adicione seu primeiro carro
         </p>
       </div>
     )
   }
 
-  const containerClass = viewMode === 'grid' 
-    ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
-    : 'space-y-3'
+  const containerClass = viewMode === 'list' 
+    ? 'space-y-3'
+    : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'
 
   return (
     <div className="space-y-4">
@@ -123,7 +126,7 @@ export function CarsList({
                 <h3 className="title-medium truncate mb-1">
                   {car.nome}
                 </h3>
-                <p className="body-medium" style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>
+                <p className="body-medium text-gray-800 dark:text-gray-100">
                   {car.serie} • {car.ano}
                 </p>
               </div>
@@ -134,7 +137,7 @@ export function CarsList({
 
             <div className="space-y-2 mb-4">
               {car.cor && (
-                <div className="flex items-center body-medium" style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>
+                <div className="flex items-center body-medium text-gray-800 dark:text-gray-100">
                   <span 
                     className="w-3 h-3 rounded-full mr-2 border" 
                     style={{ 
@@ -146,11 +149,11 @@ export function CarsList({
                   {car.cor}
                 </div>
               )}
-              <div className="body-medium" style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>
+              <div className="body-medium text-gray-800 dark:text-gray-100">
                 Tipo: {car.tipo === 'blister' ? 'Blister' : 'Loose'}
               </div>
               {car.observacoes && (
-                <div className="body-medium truncate" style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>
+                <div className="body-medium truncate text-gray-800 dark:text-gray-100">
                   {car.observacoes}
                 </div>
               )}
@@ -170,8 +173,7 @@ export function CarsList({
               <button
                 onClick={() => handleDelete(car)}
                 disabled={deleteMutation.isPending}
-                className="md-text-button"
-                style={{ color: 'var(--md-sys-color-error)' }}
+                className="md-text-button text-red-700 dark:text-red-300 hover:text-red-800 dark:hover:text-red-200"
                 aria-label={`Excluir ${car.nome}`}
               >
                 {deleteMutation.isPending ? '...' : 'Excluir'}
@@ -197,7 +199,7 @@ export function CarsList({
               <div className="label-large">
                 Página {pagination.page} de {pagination.totalPages}
               </div>
-              <div className="label-medium" style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>
+              <div className="label-medium text-gray-800 dark:text-gray-100">
                 {pagination.total} carros no total
               </div>
             </div>
