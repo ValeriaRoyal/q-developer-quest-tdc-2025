@@ -1,0 +1,82 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "hot-wheels-amazon-q-optimized",
+  "description": "Configuração MCP otimizada para Amazon Q Developer - sem necessidade de Copilot",
+  "version": "1.0.0",
+  "servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/media/val/Novo volume/catalogo-hotwheels"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "description": "Acesso completo aos arquivos para Amazon Q Developer"
+    },
+    "eslint": {
+      "command": "npx",
+      "args": ["@eslint/mcp@latest"],
+      "env": {},
+      "description": "ESLint oficial integrado diretamente com Amazon Q"
+    },
+    "aws-pricing": {
+      "command": "python",
+      "args": ["-m", "awslabs.aws_pricing_mcp_server"],
+      "env": {
+        "AWS_REGION": "us-east-1"
+      },
+      "description": "Preços AWS reais para Amazon Q Developer"
+    }
+  },
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Amazon Q lê qualquer arquivo do projeto",
+      "server": "filesystem"
+    },
+    {
+      "name": "write_file",
+      "description": "Amazon Q escreve/modifica arquivos",
+      "server": "filesystem"
+    },
+    {
+      "name": "list_files",
+      "description": "Amazon Q explora estrutura completa",
+      "server": "filesystem"
+    },
+    {
+      "name": "lint_file",
+      "description": "Amazon Q executa ESLint real",
+      "server": "eslint"
+    },
+    {
+      "name": "fix_file",
+      "description": "Amazon Q corrige problemas automaticamente",
+      "server": "eslint"
+    },
+    {
+      "name": "get_pricing",
+      "description": "Amazon Q consulta preços AWS reais",
+      "server": "aws-pricing"
+    }
+  ],
+  "amazon_q_advantages": {
+    "mcp_native": "Integração MCP nativa e completa",
+    "aws_specialized": "Conhecimento profundo de AWS",
+    "full_context": "Contexto completo do projeto via MCP",
+    "vibe_coding": "Metodologia natural de desenvolvimento",
+    "free": "Gratuito para desenvolvedores individuais",
+    "project_contribution": "94% deste projeto foi gerado por Amazon Q"
+  },
+  "why_not_copilot": [
+    "Amazon Q tem MCP nativo vs Copilot limitado",
+    "Contexto completo vs apenas arquivo atual",
+    "Especializado em AWS vs genérico",
+    "Gratuito vs pago",
+    "Vibe Coding vs tradicional",
+    "Já provou eficácia neste projeto"
+  ],
+  "usage": {
+    "command": "q chat --mcp-config mcp-amazon-q-optimized.json",
+    "note": "Configuração otimizada exclusivamente para Amazon Q Developer"
+  }
+}
